@@ -11,15 +11,15 @@ RUN apt-get update && apt-get install -yq \
     firefox-esr \
 #    chromium=62.0.3202.89-1~deb9u1 \
 #    google-chrome-stable \
-    xvfb=2:1.19.2-1+deb9u2 \
-    xsel=1.2.0-2+b1 \
-    unzip=6.0-21 \
-    libgconf2-4=3.2.6-4+b1 \
-    libncurses5=6.0+20161126-1+deb9u2 \
-    libxml2-dev=2.9.4+dfsg1-2.2+deb9u2 \
+    xvfb \
+    xsel \
+    unzip \
+    libgconf2-4 \
+    libncurses5 \
+    libxml2-dev \
     libxslt-dev \
     libz-dev \
-    xclip=0.12+svn84-4+b1 \
+    xclip \
     libglib2.0-0 \
     libnss3 \
     libx11-6
