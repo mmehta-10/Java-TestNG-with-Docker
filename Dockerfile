@@ -1,6 +1,6 @@
 FROM maven:3.6.1-jdk-8-slim as build
 COPY . .
-RUN mvn test
+
 #CMD ["mvn test"]
 
 #FROM openjdk:8-jre-alpine
@@ -23,6 +23,8 @@ RUN apt-get update && apt-get install -yq \
     libglib2.0-0 \
     libnss3 \
     libx11-6
+
+RUN mvn test
 
 # GeckoDriver v0.19.1
 RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /tmp/geckodriver.tgz \
