@@ -24,8 +24,6 @@ RUN apt-get update && apt-get install -yq \
     libnss3 \
     libx11-6
 
-RUN mvn test
-
 # GeckoDriver v0.19.1
 RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /tmp/geckodriver.tgz \
     && tar zxf /tmp/geckodriver.tgz -C /usr/bin/ \
@@ -40,3 +38,5 @@ RUN wget -q "https://chromedriver.storage.googleapis.com/81.0.4044.20/chromedriv
 ADD xvfb-chromium /usr/bin/xvfb-chromium
 RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
     && chmod 777 /usr/bin/xvfb-chromium
+
+RUN mvn test
