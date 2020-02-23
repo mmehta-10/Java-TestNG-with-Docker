@@ -10,7 +10,7 @@ COPY . .
 RUN apt-get update && apt-get install -yq \
     firefox-esr \
 #    chromium=62.0.3202.89-1~deb9u1 \
-    google-chrome-stable \
+#    google-chrome-stable \
     xvfb=2:1.19.2-1+deb9u2 \
     xsel=1.2.0-2+b1 \
     unzip=6.0-21 \
@@ -23,6 +23,14 @@ RUN apt-get update && apt-get install -yq \
     libglib2.0-0 \
     libnss3 \
     libx11-6
+
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+  && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+  && apt-get update -qqy \
+  && apt-get -qqy install \
+    ${CHROME_VERSION:-google-chrome-stable} \
+  && rm /etc/apt/sources.list.d/google-chrome.list \
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # GeckoDriver v0.19.1
 RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /tmp/geckodriver.tgz \
