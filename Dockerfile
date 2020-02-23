@@ -19,7 +19,10 @@ RUN apt-get update && apt-get install -yq \
     libxml2-dev=2.9.4+dfsg1-2.2+deb9u2 \
     libxslt-dev \
     libz-dev \
-    xclip=0.12+svn84-4+b1
+    xclip=0.12+svn84-4+b1 \
+    libglib2.0-0 \
+    libnss3 \
+    libx11-6
 
 # GeckoDriver v0.19.1
 RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz" -O /tmp/geckodriver.tgz \
