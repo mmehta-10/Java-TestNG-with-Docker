@@ -1,6 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -15,7 +17,17 @@ public class SearchTest {
     @BeforeTest
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("enable-automation");
+//        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--dns-prefetch-disable");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-proxy-server");
+        options.setPageLoadStrategy(PageLoadStrategy.NONE);
+        options.addArguments("start-maximized");
+        driver = new ChromeDriver(options);
         google = new SearchPage(driver);
     }
 
