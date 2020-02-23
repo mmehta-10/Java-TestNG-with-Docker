@@ -8,7 +8,7 @@ COPY . .
 #CMD ["mvn test"]
 
 RUN apt-get update && apt-get install -yq \
-    firefox \
+    firefox-esr \
 #    chromium=62.0.3202.89-1~deb9u1 \
     google-chrome-stable \
     xvfb=2:1.19.2-1+deb9u2 \
