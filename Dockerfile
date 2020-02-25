@@ -1,4 +1,4 @@
-FROM maven:3.6.1-jdk-8-slim as build
+FROM maven:3.6.1-jdk-8-slim AS base
 COPY . .
 
 #CMD ["mvn test"]
@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -yq \
     wget \
     gnupg
 
+FROM base
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
   && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
   && apt-get update -qqy \
@@ -50,8 +51,12 @@ RUN wget -q "https://chromedriver.storage.googleapis.com/81.0.4044.20/chromedriv
 #     && chmod 777 /usr/bin/xvfb-chromium
 
 # Starting xfvb as a service
-ENV DISPLAY=:99
-ADD xvfb /etc/init.d/
-RUN chmod 755 /etc/init.d/xvfb
+# ENV DISPLAY=:99
+# ADD xvfb /etc/init.d/
+# RUN chmod 755 /etc/init.d/xvfb
 
-RUN mvn test
+# setup Xvfb
+RUN Xvfb :99 &
+RUN export DISPLAY=:99
+
+ENTRYPOINT ["mvn","test"]
