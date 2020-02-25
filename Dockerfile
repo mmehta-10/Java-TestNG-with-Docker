@@ -44,9 +44,14 @@ RUN wget -q "https://chromedriver.storage.googleapis.com/81.0.4044.20/chromedriv
     && unzip /tmp/chromedriver.zip -d /usr/bin/ \
     && rm /tmp/chromedriver.zip
 
-# xvfb - X server display
-ADD xvfb-chromium /usr/bin/xvfb-chromium
-RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
-    && chmod 777 /usr/bin/xvfb-chromium
+# # xvfb - X server display
+# ADD xvfb-chromium /usr/bin/xvfb-chromium
+# RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
+#     && chmod 777 /usr/bin/xvfb-chromium
+
+# Starting xfvb as a service
+ENV DISPLAY=:99
+ADD xvfb /etc/init.d/
+RUN chmod 755 /etc/init.d/xvfb
 
 RUN mvn test
