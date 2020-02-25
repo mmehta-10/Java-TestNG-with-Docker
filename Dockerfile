@@ -58,4 +58,4 @@ RUN wget -q "https://chromedriver.storage.googleapis.com/81.0.4044.20/chromedriv
 RUN Xvfb :99 &
 RUN export DISPLAY=:99
 
-ENTRYPOINT ["mvn test"]
+ENTRYPOINT ["mvn","test"]
