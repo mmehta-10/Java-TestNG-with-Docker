@@ -50,8 +50,12 @@ RUN wget -q "https://chromedriver.storage.googleapis.com/81.0.4044.20/chromedriv
 #     && chmod 777 /usr/bin/xvfb-chromium
 
 # Starting xfvb as a service
-ENV DISPLAY=:99
-ADD xvfb /etc/init.d/
-RUN chmod 755 /etc/init.d/xvfb
+# ENV DISPLAY=:99
+# ADD xvfb /etc/init.d/
+# RUN chmod 755 /etc/init.d/xvfb
+
+# setup Xvfb
+RUN Xvfb :99 &
+RUN export DISPLAY=:99
 
 RUN mvn test
