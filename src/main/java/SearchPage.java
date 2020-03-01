@@ -24,6 +24,7 @@ public class SearchPage {
 
     protected void goToURL() {
         this.driver.get("https://www.google.com");
+        wait.until(ExpectedConditions.presenceOfElementLocated(searchBox));
     }
 
     protected void searchForKeyword(String text) throws InterruptedException {
