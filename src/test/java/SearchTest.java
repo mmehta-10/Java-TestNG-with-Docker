@@ -25,6 +25,7 @@ public class SearchTest {
         options.addArguments("--dns-prefetch-disable");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-proxy-server");
+        options.addArguments("--disable-dev-shm-usage");
         options.setPageLoadStrategy(PageLoadStrategy.NONE);
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
